@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f6f8f5">
+  <title>ADN SPARE — Explore Every Part</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="enhancements.css">
+</head>
+<body>
+  <a class="skip-link" href="#explore">Skip to vehicle selection</a>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">ADN</span><span>ADN SPARE<small>PARTS EXPLORER</small></span></a>
+    <nav><a href="#explore">Explore</a><a href="#catalogue">Parts catalogue</a><a href="#about">About</a></nav>
+    <a class="top-cta" href="#explore">Start exploring <span>↗</span></a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><i></i> THE MACHINERY, DECODED</div>
+        <h1>Explore your <em>vehicle.</em><br><span>Discover every part.</span></h1>
+        <p class="hero-text">Choose a car or motorcycle to see its parts separate in an interactive exploded view, then inspect each component.</p>
+        <div class="hero-highlights"><span>6 VEHICLES</span><span>84+ COMPONENTS</span><span>ROTATING PART VIEWS</span></div>
+        <a class="scroll-hint" href="#explore"><span class="scroll-icon">↓</span> CHOOSE YOUR MACHINE</a>
+      </div>
+      <div class="hero-art">
+        <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
+        <div class="hero-stamp">ADN<br>GARAGE<span>✳</span></div>
+        <div class="hero-note">CARS + MOTORCYCLES<br><b>PARTS / 01</b></div>
+        <div class="hero-line"></div>
+        <div class="hero-number">01—02</div>
+      </div>
+    </section>
+
+    <section class="explore-section" id="explore">
+      <div class="section-head">
+        <div><div class="eyebrow"><i></i> PICK YOUR RIDE</div><h2>Choose your <em>vehicle.</em></h2></div>
+        <p>Tap a model to separate its parts<br>and explore the components.</p>
+      </div>
+      <div class="vehicle-filters" role="group" aria-label="Filter vehicles">
+        <button class="vehicle-filter active" data-vehicle-filter="all" aria-pressed="true">All vehicles <span>6</span></button>
+        <button class="vehicle-filter" data-vehicle-filter="car" aria-pressed="false">Cars <span>3</span></button>
+        <button class="vehicle-filter" data-vehicle-filter="bike" aria-pressed="false">Motorcycles <span>3</span></button>
+      </div>
+      <div class="vehicle-grid" id="vehicleGrid"></div>
+    </section>
+
+    <section class="parts-section" id="partsSection" aria-live="polite">
+      <div class="parts-heading">
+        <div><div class="eyebrow"><i></i> COMPONENT BREAKDOWN</div><h2 id="partsTitle">Inside the <em>machine.</em></h2><p id="partsSubtitle">Select a vehicle above to begin.</p></div>
+        <button class="reset-btn" id="resetBtn">↶ Choose another</button>
+      </div>
+      <div class="exploded-stage" id="explodedStage">
+        <div class="stage-grid"></div>
+        <img class="stage-vehicle" id="stageVehicle" alt="" aria-hidden="true">
+        <figure class="part-showcase" id="partShowcase" aria-live="polite">
+          <div class="part-turntable"><img id="stagePartImage" alt=""><span class="turntable-glint"></span></div>
+          <figcaption><strong id="stagePartName">SPARE PART</strong><span id="stagePartKind">SELECT A COMPONENT</span>
+            <a id="stagePartCredit" href="https://commons.wikimedia.org/" target="_blank" rel="noreferrer">Photo source: Wikimedia Commons</a>
+          </figcaption>
+        </figure>
+        <div class="stage-center"><div class="scan-ring"></div><span>SELECT A VEHICLE<br>TO DECONSTRUCT</span></div>
+        <div class="parts-float" id="partsFloat"></div>
+      </div>
+      <section class="part-detail" id="partDetail" aria-live="polite" aria-label="Selected component details">
+        <div class="detail-icon" id="detailIcon">✳</div>
+        <div class="detail-copy"><span class="part-tag" id="detailCategory">COMPONENT GUIDE</span><h3 id="detailName">Select a component to inspect it</h3><p id="detailDescription">Choose a floating component or a catalogue card to see what it does.</p></div>
+        <button class="save-part" id="savePartBtn" type="button" disabled>☆ <span>Save part</span></button>
+      </section>
+      <p class="app-notice" id="appNotice" role="status"></p>
+      <div class="catalogue-head" id="catalogue"><div><div class="eyebrow"><i></i> THE INVENTORY</div><h2>Parts <em>catalogue.</em></h2><p class="results-count" id="resultsCount" aria-live="polite">Choose a vehicle to browse its components.</p></div><div class="search-wrap"><span>⌕</span><input id="searchInput" type="search" placeholder="Search a spare part..." aria-label="Search spare parts"></div></div>
+      <div class="filter-row" id="filterRow">
+        <button class="filter active" data-filter="all" aria-pressed="true">All parts</button>
+        <button class="filter" data-filter="engine" aria-pressed="false">Engine</button>
+        <button class="filter" data-filter="braking" aria-pressed="false">Braking</button>
+        <button class="filter" data-filter="electrical" aria-pressed="false">Electrical</button>
+        <button class="filter" data-filter="body" aria-pressed="false">Body & exterior</button>
+        <button class="filter" data-filter="suspension" aria-pressed="false">Suspension</button>
+        <button class="filter saved-filter" id="savedFilter" aria-pressed="false">☆ Saved <span id="savedCount">0</span></button>
+      </div>
+      <div class="parts-grid" id="partsGrid">
+        <div class="empty-state"><span>✳</span><h3>Your parts list is waiting.</h3><p>Choose car or bike to load its spare parts catalogue.</p></div>
+      </div>
+    </section>
+
+    <section class="about-section" id="about">
+      <div class="about-symbol">A<span>+</span></div>
+      <div><div class="eyebrow"><i></i> ABOUT THIS PROJECT</div><h2>Understand the parts.<br><em>Understand the ride.</em></h2></div>
+      <p>ADN SPARE is an interactive learning project with six vehicle catalogues, an animated exploded view, rotating reference photos of real spare parts, and a personal saved-parts list. Parts and photos are educational references; equipment varies by model year, trim and market.</p>
+      <details class="vehicle-image-credits">
+        <summary>Vehicle photo credits</summary>
+        <ul>
+          <li><a href="https://commons.wikimedia.org/wiki/File:Ford_Mustang.jpg" target="_blank" rel="noreferrer">Ford Mustang</a> — Oxyman, CC BY 2.5</li>
+          <li><a href="https://commons.wikimedia.org/wiki/File:D%C3%BClmen,_Auto_Bertels,_Toyota_GR_Supra_--_2021_--_9552-4.jpg" target="_blank" rel="noreferrer">Toyota GR Supra</a> — Dietmar Rabich, CC BY-SA 4.0</li>
+          <li><a href="https://commons.wikimedia.org/wiki/File:Honda_Civic_Type_R.jpg" target="_blank" rel="noreferrer">Honda Civic Type R</a> — Francesco Gasparetti, CC BY 2.0</li>
+          <li><a href="https://commons.wikimedia.org/wiki/File:Yamaha_YZF-R1.jpg" target="_blank" rel="noreferrer">Yamaha YZF-R1</a> — Snowdog, public domain</li>
+          <li><a href="https://commons.wikimedia.org/wiki/File:Royal_Enfield_Classic_350.jpg" target="_blank" rel="noreferrer">Royal Enfield Classic 350</a> — Tirthrajnbarot, CC BY-SA 3.0</li>
+          <li><a href="https://commons.wikimedia.org/wiki/File:Ducati_Panigale_V4S_2025.jpg" target="_blank" rel="noreferrer">Ducati Panigale V4S</a> — AVMOTO, CC BY-SA 4.0</li>
+        </ul>
+      </details>
+    </section>
+  </main>
+  <footer><span>© 2026 ADN SPARE</span><span>MADE FOR THE LOVE OF MACHINES <b>✳</b></span></footer>
+  <script src="app.js"></script>
+</body>
+</html>
